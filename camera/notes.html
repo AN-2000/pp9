@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+
+      select {
+        display: block;
+        height: 2rem;
+        width: 7rem;
+        margin: auto;
+      }
+
+      #title {
+        display: block;
+        margin: auto;
+        height: 2rem;
+        width: 20rem;
+      }
+
+      #content {
+        display: block;
+        margin: auto;
+        width: 25rem;
+        height: 15rem;
+      }
+      button {
+        display: block;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <select>
+      <option value="generalNotes">generalNotes</option>
+      <option value="placementNotes">placementNotes</option>
+      <option value="collegeNotes">collegeNotes</option>
+    </select>
+    <br />
+
+    <input id="title" placeholder="Title" />
+    <br />
+    <input id="content" />
+    <br />
+    <button id="submit">Submit</button>
+    <hr />
+
+    <button id="placement">View placementNotes</button>
+    <button id="college">View collegeNotes</button>
+    <button id="general">View generalNotes</button>
+
+    <ul></ul>
+
+    <script>
+      let db;
+      let ul = document.querySelector("ul");
+      let submitBtn = document.querySelector("#submit");
+      let placementBtn = document.querySelector("#placement");
+      let collegeBtn = document.querySelector("#college");
+      let generalBtn = document.querySelector("#general");
+
+      let title = document.querySelector("#title");
+      let content = document.querySelector("#content");
+      let select = document.querySelector("select");
+
+      placementBtn.addEventListener("click", function () {
+        viewNotes("placementNotes");
+      });
+
+      collegeBtn.addEventListener("click", function () {
+        viewNotes("collegeNotes");
+      });
+
+      generalBtn.addEventListener("click", function () {
+        viewNotes("generalNotes");
+      });
+
+      submitBtn.addEventListener("click", function () {
+        if (content.value == "" || title.value == "") {
+          alert("Please enter title and content");
+          return;
+        } else {
+          let collectionName = select.value;
+          let obj = {};
+          if (collectionName == "placementNotes") {
+            obj.pId = Date.now();
+          }
+          if (collectionName == "generalNotes") {
+            obj.gId = Date.now();
+          }
+          if (collectionName == "collegeNotes") {
+            obj.cId = Date.now();
+          }
+
+          obj.title = title.value;
+          obj.content = content.value;
+
+          addNote(collectionName, obj);
+        }
+      });
+
+      let req = indexedDB.open("NotesDB", 1);
+      //   indexedDB.open("Name-of-DB", version-of-db);
+
+      req.addEventListener("success", function () {
+        db = req.result;
+        // alert("db was opened successfully");
+      });
+
+      //upgrade event occurs in 2 cases
+      //case1: when we create a new db
+      //case2: when you try to open a database which already existed with a incremented version
+      req.addEventListener("upgradeneeded", function () {
+        let accessToNotesDB = req.result;
+        accessToNotesDB.createObjectStore("placementNotes", { keyPath: "pId" });
+        accessToNotesDB.createObjectStore("generalNotes", { keyPath: "gId" });
+        accessToNotesDB.createObjectStore("collegeNotes", { keyPath: "cId" });
+        //keyPath works as an ID
+        //I can create an object store
+        // alert("db was updated/created successfully");
+      });
+
+      req.addEventListener("error", function () {
+        // alert("Error in creation/opening");
+      });
+
+      function addNote(collectionName, obj) {
+        if (!db) return;
+
+        let tx = db.transaction(collectionName, "readwrite");
+        let reqObjectStore = tx.objectStore(collectionName);
+        reqObjectStore.add(obj);
+      }
+
+      function viewNotes(collectionName) {
+        if (!db) return;
+
+        let tx = db.transaction(collectionName, "readonly");
+        let reqObjectStore = tx.objectStore(collectionName);
+
+        let cursorReq = reqObjectStore.openCursor();
+
+
+        let oldLis = ul.querySelectorAll("li")
+        for(let i = 0;i<oldLis.length;i++){
+            oldLis[i].remove()
+        }
+
+        cursorReq.addEventListener("success", function () {
+          let cursor = cursorReq.result;
+          if (cursor) {
+            let li = document.createElement("li");
+            li.innerHTML = `<div>${cursor.value.title}</div><div>${cursor.value.content}</div><br>`;
+            ul.append(li)
+            cursor.continue();
+          }
+        });
+      }
+
+      //   Task is create 3 buttons
+      //   view placement notes
+      //   view college notes
+      //   view general notes
+    </script>
+  </body>
+</html>

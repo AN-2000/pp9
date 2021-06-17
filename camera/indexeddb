@@ -1,0 +1,52 @@
+IndexedDB=>
+
+    Database inside your browser (NoSQL) 
+    we dont need to create it 
+    SQL => relational Database (Tables and unko relate )
+
+    NoSQL => We dont need tables , dont need relation just need objects (JS)
+
+    Instead of creating table, create a collection of objects with similar kind of data 
+
+    (you create multiple collections, we cannot create relations)
+
+    collection = [
+        {kuchBhi:1, Name: Anirudh,Roll Number: 1, College:DU},
+        {nId:2, Name: Ram, College:DU, Address: Delhi}
+    ]
+
+    A single nosql db can contain multiple collections and in IndexedDB we call these collections objectStore. If you want to create an object store you can only do that inside of the function of upgrade event.
+
+
+    Students Table (You create multiple tables, tables can be related)
+
+    Name    College Name    Address
+    Anirudh DU              Delhi 
+    Ram     DU              Delhi
+
+
+    LocalStorage sort Database joki browser store krta hai and IndexedDB does the same? So whats the difference?
+
+    LocalStorage KEY VALUE PAIR  use krte the (objects were not stored) 
+    It used to store only strings 
+    Directly object store => any kind of data store kr sakte 
+    LocalStorage max 5 mb 
+    IndexedDB has no such limit (2gb-3gb) In a sense secondary (they were persistant)
+
+
+    [
+
+
+        {},
+        {},
+        {},
+        {}
+        .
+        .
+        .
+        .
+        .
+       {}
+        ->
+
+    ]
