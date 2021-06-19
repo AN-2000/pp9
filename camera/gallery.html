@@ -14,11 +14,12 @@
         display: flex;
         flex-wrap: wrap;
         padding: 16px;
-
+        justify-content: space-evenly;
       }
 
 
       .media-container{
+          margin-top: 10px;
           width: 20rem;
           height: 18rem;
           border: 1px solid;
@@ -55,6 +56,7 @@
 
     <script src="dbScript.js"></script>
     <script>
+        //jo request - db connection(open) it takes some time, but viewMedia it is called before the request is completed so we make this function call such that it happens after request is completed by making it wait
       setTimeout(function () {
         viewMedia();
       }, 100);
