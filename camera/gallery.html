@@ -1,13 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1>Gallery</h1>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 16px;
+
+      }
+
+
+      .media-container{
+          width: 20rem;
+          height: 18rem;
+          border: 1px solid;
+      }
+
+      .media{
+          width: 100%;
+          height: 80%;
+          border: 1px solid;
+      }
+
+      button{
+          width: 100%;
+          height: 10%;
+          border: 1px solid;
+      }
+
+      img,video{
+          height: 100%;
+          width: 100%;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <!-- <div class="media-container">
+        <div class="media">
+            <video src="" autoplay loop controls muted></video>
+        </div>
+        <button class="download"></button>
+        <button class="delete"></button>
+    </div> -->
+
     <script src="dbScript.js"></script>
-</body>
+    <script>
+      setTimeout(function () {
+        viewMedia();
+      }, 100);
+    </script>
+  </body>
 </html>
