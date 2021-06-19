@@ -108,7 +108,7 @@
         }
       });
 
-      let req = indexedDB.open("NotesDB", 1);
+      let req = indexedDB.open("NotesDB", 2);
       //   indexedDB.open("Name-of-DB", version-of-db);
 
       req.addEventListener("success", function () {
@@ -121,9 +121,9 @@
       //case2: when you try to open a database which already existed with a incremented version
       req.addEventListener("upgradeneeded", function () {
         let accessToNotesDB = req.result;
-        accessToNotesDB.createObjectStore("placementNotes", { keyPath: "pId" });
-        accessToNotesDB.createObjectStore("generalNotes", { keyPath: "gId" });
-        accessToNotesDB.createObjectStore("collegeNotes", { keyPath: "cId" });
+        // accessToNotesDB.createObjectStore("placementNotes", { keyPath: "pId" });
+        // accessToNotesDB.createObjectStore("generalNotes", { keyPath: "gId" });
+        // accessToNotesDB.createObjectStore("collegeNotes", { keyPath: "cId" });
         //keyPath works as an ID
         //I can create an object store
         // alert("db was updated/created successfully");

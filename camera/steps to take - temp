@@ -1,0 +1,35 @@
+first open a indexedDb database - Camera,1 [collection/objectStore = Gallery]
+
+3 functions - add, view, delete 
+
+Render all images and videos in gallery 
+
+All those media should have 2 things - Delete and download 
+
+
+
+
+Blob me url bnare the, that was working as a pointer 
+
+On the other hand for image it is a data url, 665kb
+
+
+
+
+
+
+
+
+
+
+open and initialize db (dbScript.js)
+create gallery btn 
+comment download code 
+
+
+
+
+
+
+
+
