@@ -3,6 +3,7 @@ body.spellcheck = false;
 
 let menuBarPtags = document.querySelectorAll(".menu-bar p");
 
+//
 for (let i = 0; i < menuBarPtags.length; i++) {
   menuBarPtags[i].addEventListener("click", function (e) {
     if (e.currentTarget.classList.contains("menu-bar-option-selected")) {

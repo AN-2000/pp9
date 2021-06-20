@@ -18,10 +18,34 @@
         <p>Edit</p>
         <p>Help</p>
     </div>
-    <div class="menu-options"></div>
-    <div class="formula-bar"></div>
+    <div class="menu-options">
+        <div class="bui"></div>
+        <div class="font-styles">
+            <select  id="cell-font-family">
+                <option value="arial">arial</option>
+                <option value="helvetica">helvetica</option>
+                <option value="open sans">open sans</option>
+                <option value="times new roman">times new roman</option>
+            </select>
+            <select  id="cell-font-size">
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="14">14</option>
+                <option value="18">18</option>
+                <option value="24">24</option>
+                <option value="36">36</option>
+            </select>
+        </div>
+        <div class="alignment"></div>
+        <div class="colors"></div>
+    </div>
+    <div class="formula-bar">
+        <input id="select-cell" /><input id="complete-formula" />
+    </div>
     <div class="grid"></div>
-    <div class="sheets-bar"></div>
+    <div class="sheets-bar">
+        <div>Sheets - 1</div>
+    </div>
 </div>
 
 <script src="script.js"></script>
