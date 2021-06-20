@@ -1,53 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Excel</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <!-- complete excel app will reside in this container  -->
-<div class="container">
-    <div class="title-bar" contenteditable="true">
-        Book - 1
-    </div>
-    <div class="menu-bar">
+    <div class="container">
+      <div class="title-bar" contenteditable="true">Book - 1</div>
+      <div class="menu-bar">
         <p class="menu-bar-option-selected">File</p>
         <p>Edit</p>
         <p>Help</p>
-    </div>
-    <div class="menu-options">
-        <div class="bui"></div>
-        <div class="font-styles">
-            <select  id="cell-font-family">
-                <option value="arial">arial</option>
-                <option value="helvetica">helvetica</option>
-                <option value="open sans">open sans</option>
-                <option value="times new roman">times new roman</option>
-            </select>
-            <select  id="cell-font-size">
-                <option value="10">10</option>
-                <option value="12">12</option>
-                <option value="14">14</option>
-                <option value="18">18</option>
-                <option value="24">24</option>
-                <option value="36">36</option>
-            </select>
+      </div>
+      <div class="menu-options">
+        <div class="bui">
+          <span class="material-icons"> format_bold </span>
+          <span class="material-icons"> format_italic </span>
+          <span class="material-icons"> format_underlined </span>
         </div>
-        <div class="alignment"></div>
-        <div class="colors"></div>
-    </div>
-    <div class="formula-bar">
+        <div class="font-styles">
+          <select id="cell-font-family">
+            <option value="arial">arial</option>
+            <option value="helvetica">helvetica</option>
+            <option value="open sans">open sans</option>
+            <option value="times new roman">times new roman</option>
+          </select>
+          <select id="cell-font-size">
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="14">14</option>
+            <option value="18">18</option>
+            <option value="24">24</option>
+            <option value="36">36</option>
+          </select>
+        </div>
+        <div class="alignment">
+          <span class="material-icons"> format_align_left </span>
+          <span class="material-icons"> format_align_center </span>
+          <span class="material-icons"> format_align_right </span>
+        </div>
+        <div class="colors">
+          <span class="material-icons"> format_color_text </span>
+          <span class="material-icons"> format_color_fill </span>
+        </div>
+      </div>
+      <div class="formula-bar">
         <input id="select-cell" /><input id="complete-formula" />
-    </div>
-    <div class="grid"></div>
-    <div class="sheets-bar">
+      </div>
+      <div class="grid"></div>
+      <div class="sheets-bar">
         <div>Sheets - 1</div>
+      </div>
     </div>
-</div>
 
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

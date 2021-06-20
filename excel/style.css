@@ -48,7 +48,7 @@ body {
 
 .menu-options {
   display: flex;
-  height: 8%;
+  height: 6%;
   width: 100%;
 }
 
@@ -74,7 +74,7 @@ body {
 
 .grid {
   width: 100%;
-  height: 76.5%;
+  height: 78.5%;
   background-color: yellow;
 }
 
@@ -106,8 +106,11 @@ body {
 }
 
 .font-styles {
+  width: 40%;
+}
+
+.menu-options div {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40%;
 }
