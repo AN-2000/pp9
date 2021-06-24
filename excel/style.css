@@ -174,3 +174,8 @@ body {
   flex-shrink: 0;
   outline: none;
 }
+
+
+.grid-selected-cell{
+  border: 3px solid #34ace0;
+}
