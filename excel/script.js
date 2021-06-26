@@ -77,11 +77,101 @@ for (let j = 1; j <= 100; j++) {
       oldCell = e.currentTarget;
     });
 
+    cell.addEventListener("input", function (e) {
+      console.log(e.currentTarget.innerText);
+      let address = e.currentTarget.getAttribute("data-address");
+      dataObj[address].value = Number(e.currentTarget.innerText);
+
+      dataObj[address].formula = "";
+
+      //upstream clear krni hai
+
+      let currCellUpstream = dataObj[address].upstream;
+
+      for (let i = 0; i < currCellUpstream.length; i++) {
+        removeFromUpstream(address, currCellUpstream[i]);
+      }
+
+      dataObj[address].upstream = [];
+      //downstream ke cells ko update krna hai
+
+      let currCellDownstream = dataObj[address].downstream;
+
+      for (let i = 0; i < currCellDownstream.length; i++) {
+        updateDownstreamElements(currCellDownstream[i]);
+      }
+
+      console.log(dataObj[address]);
+    });
+
     cell.contentEditable = true;
     row.append(cell);
   }
   grid.append(row);
 }
 
+function removeFromUpstream(dependent, onWhichItIsDepending) {
+  let newDownstream = [];
 
-console.log(dataObj);
+  let oldDownstream = dataObj[onWhichItIsDepending].downstream;
+  [C1, Z2];
+
+  for (let i = 0; i < oldDownstream.length; i++) {
+    if (oldDownstream[i] != dependent) newDownstream.push(oldDownstream[i]);
+  }
+  dataObj[onWhichItIsDepending].downstream = newDownstream;
+}
+
+function updateDownstreamElements(elementAddress) {
+  //1- jis element ko update kr rhe hai unki upstream elements ki current value leao
+  //unki upstream ke elements ka address use krke dataObj se unki value lao 
+  //unhe as key value pair store krdo valObj naam ke obj me
+  let valObj = {};
+
+  let currCellUpstream = dataObj[elementAddress].upstream; 
+
+  for (let i = 0; i < currCellUpstream.length; i++) {
+    let upstreamCellAddress = currCellUpstream[i]; 
+    let upstreaCellValue = dataObj[upstreamCellAddress].value; 
+
+    valObj[upstreamCellAddress] = upstreaCellValue;
+
+  }
+
+  //2- jis element ko update kr rhe hai uska formula leao
+  let currFormula = dataObj[elementAddress].formula;
+  //formula ko space ke basis pr split maro
+  let forumlaArr = currFormula.split(" ");
+  //split marne ke baad jo array mili uspr loop ara and formula me jo variable h(cells) unko unki value se replace krdo using valObj
+  for (let j = 0; j < forumlaArr.length; j++) {
+    if (valObj[forumlaArr[i]]) {
+      forumlaArr[i] = valObj[forumlaArr[i]];
+    }
+  }
+
+
+  //3- Create krlo wapis formula from the array by joining it 
+  currFormula = forumlaArr.join(" ");
+
+  //4- evaluate the new value using eval function 
+  let newValue = eval(currFormula);
+
+
+  //update the cell(jispr function call hua) in dataObj
+  dataObj[elementAddress].value = newValue;
+
+  //5- Ui pr update krdo new value 
+  let cellOnUI = document.querySelector(`[data-address=${elementAddress}]`);
+  cellOnUI.innerText = newValue;
+
+  //6- Downstream leke ao jis element ko update kra just abhi kuki uspr bhi kuch element depend kr sakte hai
+  //unko bhi update krna padega
+  let currCellDownstream = dataObj[elementAddress].downstream;
+
+  //check kro ki downstream me elements hai kya agr han to un sab pr yehi function call krdo jise wo bhi update hojai with new value 
+  if (currCellDownstream.length > 0) {
+    for (let k = 0; k < currCellDownstream.length; k++) {
+      updateDownstreamElements(currCellDownstream[k]);
+    }
+  }
+}
