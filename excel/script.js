@@ -12,6 +12,8 @@ let grid = document.querySelector(".grid");
 
 let menuBarPtags = document.querySelectorAll(".menu-bar p");
 
+let dataObj = {};
+
 for (let i = 0; i < menuBarPtags.length; i++) {
   menuBarPtags[i].addEventListener("click", function (e) {
     if (e.currentTarget.classList.contains("menu-bar-option-selected")) {
@@ -45,16 +47,18 @@ for (let j = 1; j <= 100; j++) {
   let row = document.createElement("div");
   row.classList.add("row");
 
-  //j = 100
-  //i = 0; i + 65 => 65(A)  ==> A100
-  //i = 1; i + 65 => 66(B)  ==> B1
-
-  //  Z100
-
   for (let i = 0; i < 26; i++) {
     let cell = document.createElement("div");
     cell.classList.add("cell");
-    cell.setAttribute("data-address", String.fromCharCode(i + 65) + j);
+    let address = String.fromCharCode(i + 65) + j;
+    cell.setAttribute("data-address", address);
+
+    dataObj[address] = {
+      value: "",
+      formula: "",
+      upstream: [],
+      downstream: [],
+    };
 
     cell.addEventListener("click", function (e) {
       //check kro koi old cell hai kya pehli se selected
@@ -78,3 +82,6 @@ for (let j = 1; j <= 100; j++) {
   }
   grid.append(row);
 }
+
+
+console.log(dataObj);
