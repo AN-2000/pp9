@@ -101,7 +101,6 @@ for (let j = 1; j <= 100; j++) {
         updateDownstreamElements(currCellDownstream[i]);
       }
 
-      console.log(dataObj[address]);
     });
 
     cell.contentEditable = true;
@@ -109,6 +108,10 @@ for (let j = 1; j <= 100; j++) {
   }
   grid.append(row);
 }
+
+
+
+
 
 function removeFromUpstream(dependent, onWhichItIsDepending) {
   let newDownstream = [];
@@ -144,8 +147,8 @@ function updateDownstreamElements(elementAddress) {
   let forumlaArr = currFormula.split(" ");
   //split marne ke baad jo array mili uspr loop ara and formula me jo variable h(cells) unko unki value se replace krdo using valObj
   for (let j = 0; j < forumlaArr.length; j++) {
-    if (valObj[forumlaArr[i]]) {
-      forumlaArr[i] = valObj[forumlaArr[i]];
+    if (valObj[forumlaArr[j]]) {
+      forumlaArr[j] = valObj[forumlaArr[j]];
     }
   }
 
