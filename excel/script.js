@@ -117,31 +117,26 @@ forumlaInput.addEventListener("change", function (e) {
 
   dataObj[selectedCellAddress].formula = formula;
 
-  let forumlaArr = formula.split(" "); //["2","*","A1"]
+  let formulaArr = formula.split(" "); //["2","*","A1"]
 
   let elementsArray = [];
 
-  for (let i = 0; i < forumlaArr.length; i++) {
+  for (let i = 0; i < formulaArr.length; i++) {
     if (
-      forumlaArr[i] != "+" &&
-      forumlaArr[i] != "-" &&
-      forumlaArr[i] != "*" &&
-      forumlaArr[i] != "/" &&
-      isNaN(Number(forumlaArr[i]))
+      formulaArr[i] != "+" &&
+      formulaArr[i] != "-" &&
+      formulaArr[i] != "*" &&
+      formulaArr[i] != "/" &&
+      isNaN(Number(formulaArr[i]))
     ) {
-      elementsArray.push(forumlaArr[i]);
+      elementsArray.push(formulaArr[i]);
     }
   }
 
-  //BEFORE SETTING NEW UPSTREAM
-  //CLEAR OLD UPSTREAM
-
   let oldUpstream = dataObj[selectedCellAddress].upstream;
 
-
-
   for (let k = 0; k < oldUpstream.length; k++) {
-    removeFromUpstream(selectedCellAddress, oldUpstream[i]);
+    removeFromUpstream(selectedCellAddress, oldUpstream[k]);
   }
 
   dataObj[selectedCellAddress].upstream = elementsArray;
@@ -149,6 +144,34 @@ forumlaInput.addEventListener("change", function (e) {
   for (let j = 0; j < elementsArray.length; j++) {
     addToDownstream(selectedCellAddress, elementsArray[j]);
   }
+
+  let valObj = {};
+
+  for (let i = 0; i < elementsArray.length; i++) {
+    let formulaDependency = elementsArray[i];
+
+    valObj[formulaDependency] = dataObj[formulaDependency].value;
+  }
+
+  for (let j = 0; j < formulaArr.length; j++) {
+    if (valObj[formulaArr[j]]) {
+      formulaArr[j] = valObj[formulaArr[j]];
+    }
+  }
+
+  formula = formulaArr.join(" ");
+  let newValue = eval(formula);
+
+  dataObj[selectedCellAddress].value = newValue;
+
+  let selectedCellDownstream = dataObj[selectedCellAddress].downstream;
+
+  for (let i = 0; i < selectedCellDownstream.length; i++) {
+    updateDownstreamElements(selectedCellDownstream[i]);
+  }
+
+  oldCell.innerText = newValue
+  forumlaInput.value = ""
 });
 
 function addToDownstream(tobeAdded, inWhichWeAreAdding) {
@@ -162,7 +185,6 @@ function removeFromUpstream(dependent, onWhichItIsDepending) {
   let newDownstream = [];
 
   let oldDownstream = dataObj[onWhichItIsDepending].downstream;
-
 
   for (let i = 0; i < oldDownstream.length; i++) {
     if (oldDownstream[i] != dependent) newDownstream.push(oldDownstream[i]);
@@ -188,16 +210,16 @@ function updateDownstreamElements(elementAddress) {
   //2- jis element ko update kr rhe hai uska formula leao
   let currFormula = dataObj[elementAddress].formula;
   //formula ko space ke basis pr split maro
-  let forumlaArr = currFormula.split(" ");
+  let formulaArr = currFormula.split(" ");
   //split marne ke baad jo array mili uspr loop ara and formula me jo variable h(cells) unko unki value se replace krdo using valObj
-  for (let j = 0; j < forumlaArr.length; j++) {
-    if (valObj[forumlaArr[j]]) {
-      forumlaArr[j] = valObj[forumlaArr[j]];
+  for (let j = 0; j < formulaArr.length; j++) {
+    if (valObj[formulaArr[j]]) {
+      formulaArr[j] = valObj[formulaArr[j]];
     }
   }
 
   //3- Create krlo wapis formula from the array by joining it
-  currFormula = forumlaArr.join(" ");
+  currFormula = formulaArr.join(" ");
 
   //4- evaluate the new value using eval function
   let newValue = eval(currFormula);
