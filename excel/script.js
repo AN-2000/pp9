@@ -6,6 +6,8 @@ let rowNumbers = document.querySelector(".row-numbers");
 
 let formulaSelectCell = document.querySelector("#select-cell");
 
+let forumlaInput = document.querySelector("#complete-formula");
+
 let oldCell;
 
 let grid = document.querySelector(".grid");
@@ -100,7 +102,6 @@ for (let j = 1; j <= 100; j++) {
       for (let i = 0; i < currCellDownstream.length; i++) {
         updateDownstreamElements(currCellDownstream[i]);
       }
-
     });
 
     cell.contentEditable = true;
@@ -109,15 +110,59 @@ for (let j = 1; j <= 100; j++) {
   grid.append(row);
 }
 
+forumlaInput.addEventListener("change", function (e) {
+  let formula = e.currentTarget.value; //"2 * A1"
+
+  let selectedCellAddress = oldCell.getAttribute("data-address");
+
+  dataObj[selectedCellAddress].formula = formula;
+
+  let forumlaArr = formula.split(" "); //["2","*","A1"]
+
+  let elementsArray = [];
+
+  for (let i = 0; i < forumlaArr.length; i++) {
+    if (
+      forumlaArr[i] != "+" &&
+      forumlaArr[i] != "-" &&
+      forumlaArr[i] != "*" &&
+      forumlaArr[i] != "/" &&
+      isNaN(Number(forumlaArr[i]))
+    ) {
+      elementsArray.push(forumlaArr[i]);
+    }
+  }
+
+  //BEFORE SETTING NEW UPSTREAM
+  //CLEAR OLD UPSTREAM
+
+  let oldUpstream = dataObj[selectedCellAddress].upstream;
 
 
 
+  for (let k = 0; k < oldUpstream.length; k++) {
+    removeFromUpstream(selectedCellAddress, oldUpstream[i]);
+  }
+
+  dataObj[selectedCellAddress].upstream = elementsArray;
+
+  for (let j = 0; j < elementsArray.length; j++) {
+    addToDownstream(selectedCellAddress, elementsArray[j]);
+  }
+});
+
+function addToDownstream(tobeAdded, inWhichWeAreAdding) {
+  //get downstream of the cell in which we have to add
+  let reqDownstream = dataObj[inWhichWeAreAdding].downstream;
+
+  reqDownstream.push(tobeAdded);
+}
 
 function removeFromUpstream(dependent, onWhichItIsDepending) {
   let newDownstream = [];
 
   let oldDownstream = dataObj[onWhichItIsDepending].downstream;
-  [C1, Z2];
+
 
   for (let i = 0; i < oldDownstream.length; i++) {
     if (oldDownstream[i] != dependent) newDownstream.push(oldDownstream[i]);
@@ -127,18 +172,17 @@ function removeFromUpstream(dependent, onWhichItIsDepending) {
 
 function updateDownstreamElements(elementAddress) {
   //1- jis element ko update kr rhe hai unki upstream elements ki current value leao
-  //unki upstream ke elements ka address use krke dataObj se unki value lao 
+  //unki upstream ke elements ka address use krke dataObj se unki value lao
   //unhe as key value pair store krdo valObj naam ke obj me
   let valObj = {};
 
-  let currCellUpstream = dataObj[elementAddress].upstream; 
+  let currCellUpstream = dataObj[elementAddress].upstream;
 
   for (let i = 0; i < currCellUpstream.length; i++) {
-    let upstreamCellAddress = currCellUpstream[i]; 
-    let upstreaCellValue = dataObj[upstreamCellAddress].value; 
+    let upstreamCellAddress = currCellUpstream[i];
+    let upstreaCellValue = dataObj[upstreamCellAddress].value;
 
     valObj[upstreamCellAddress] = upstreaCellValue;
-
   }
 
   //2- jis element ko update kr rhe hai uska formula leao
@@ -152,18 +196,16 @@ function updateDownstreamElements(elementAddress) {
     }
   }
 
-
-  //3- Create krlo wapis formula from the array by joining it 
+  //3- Create krlo wapis formula from the array by joining it
   currFormula = forumlaArr.join(" ");
 
-  //4- evaluate the new value using eval function 
+  //4- evaluate the new value using eval function
   let newValue = eval(currFormula);
-
 
   //update the cell(jispr function call hua) in dataObj
   dataObj[elementAddress].value = newValue;
 
-  //5- Ui pr update krdo new value 
+  //5- Ui pr update krdo new value
   let cellOnUI = document.querySelector(`[data-address=${elementAddress}]`);
   cellOnUI.innerText = newValue;
 
@@ -171,7 +213,7 @@ function updateDownstreamElements(elementAddress) {
   //unko bhi update krna padega
   let currCellDownstream = dataObj[elementAddress].downstream;
 
-  //check kro ki downstream me elements hai kya agr han to un sab pr yehi function call krdo jise wo bhi update hojai with new value 
+  //check kro ki downstream me elements hai kya agr han to un sab pr yehi function call krdo jise wo bhi update hojai with new value
   if (currCellDownstream.length > 0) {
     for (let k = 0; k < currCellDownstream.length; k++) {
       updateDownstreamElements(currCellDownstream[k]);
