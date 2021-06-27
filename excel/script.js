@@ -60,6 +60,14 @@ for (let j = 1; j <= 100; j++) {
       formula: "",
       upstream: [],
       downstream: [],
+      fontSize:10,
+      fontFamily:"Arial",
+      fontWeight:"normal",
+      color:"black",
+      backgroundColor:"white",
+      underline:"none",
+      italics:"normal",
+      textAlign:"left"
     };
 
     cell.addEventListener("click", function (e) {
@@ -154,7 +162,7 @@ forumlaInput.addEventListener("change", function (e) {
   }
 
   for (let j = 0; j < formulaArr.length; j++) {
-    if (valObj[formulaArr[j]]) {
+    if (valObj[formulaArr[j]] != undefined) {
       formulaArr[j] = valObj[formulaArr[j]];
     }
   }
