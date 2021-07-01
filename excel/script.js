@@ -14,6 +14,21 @@ let grid = document.querySelector(".grid");
 
 let menuBarPtags = document.querySelectorAll(".menu-bar p");
 
+let fileOptions = menuBarPtags[0];
+
+fileOptions.addEventListener("click", function (e) {
+  if (e.currentTarget.classList.length == 0) {
+    e.currentTarget.innerHTML = `File
+    <span>
+     <span>Clear</span>
+     <span>Open</span>
+     <span>Save</span>
+    </span>`;
+  } else {
+    e.currentTarget.innerHTML = `File`;
+  }
+});
+
 let dataObj = {};
 
 for (let i = 0; i < menuBarPtags.length; i++) {
@@ -60,14 +75,14 @@ for (let j = 1; j <= 100; j++) {
       formula: "",
       upstream: [],
       downstream: [],
-      fontSize:10,
-      fontFamily:"Arial",
-      fontWeight:"normal",
-      color:"black",
-      backgroundColor:"white",
-      underline:"none",
-      italics:"normal",
-      textAlign:"left"
+      fontSize: 10,
+      fontFamily: "Arial",
+      fontWeight: "normal",
+      color: "black",
+      backgroundColor: "white",
+      underline: "none",
+      italics: "normal",
+      textAlign: "left",
     };
 
     cell.addEventListener("click", function (e) {
@@ -178,8 +193,8 @@ forumlaInput.addEventListener("change", function (e) {
     updateDownstreamElements(selectedCellDownstream[i]);
   }
 
-  oldCell.innerText = newValue
-  forumlaInput.value = ""
+  oldCell.innerText = newValue;
+  forumlaInput.value = "";
 });
 
 function addToDownstream(tobeAdded, inWhichWeAreAdding) {
