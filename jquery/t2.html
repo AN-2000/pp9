@@ -18,16 +18,35 @@
 </head>
 <body>
     <ul>
-        <li > Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
-        <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, minima! </li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
     </ul>
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+    crossorigin="anonymous"
+  ></script>
+
+
+  <script>
+      $("li").attr("data-click",0)
+
+      $("li").click(function(e){
+          let nOfClicks = Number($(this).attr("data-click"))
+          nOfClicks++;
+          $(this).attr("data-click",nOfClicks)
+          if(nOfClicks==1){
+            $(this).addClass("some-class")
+          }else if(nOfClicks == 2){
+            $(this).removeClass("some-class")
+
+          }else if(nOfClicks == 3){
+            $(this).remove()
+          }
+      })
+  </script>
+
 </body>
 </html>
