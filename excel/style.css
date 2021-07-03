@@ -125,14 +125,15 @@ body {
   position: fixed;
   top: 17.5vh;
   left: 0;
-  z-index: 3;
+  z-index: 5;
 }
 
 .column-tags {
-  position: absolute;
+  position: fixed;
   display: flex;
-  top: 0;
+  top: 17.5vh;
   left: 30px;
+  z-index: 3;
 }
 
 .column-tag-cell {
@@ -157,9 +158,10 @@ body {
 }
 
 .row-numbers {
-  position: absolute;
+  position: fixed;
   left: 0;
-  top: 30px;
+  top: calc(17.5vh + 30px);
+  z-index: 3;
 }
 
 .row {
@@ -201,3 +203,16 @@ body {
   text-align: center;
   color: black;
 }
+
+/* .column-tags-atke {
+  top: 17.5vh !important;
+  left: 30px !important;
+  position: fixed !important;
+  z-index: 3 !important;
+}
+
+.row-numbers-atke {
+  position: fixed !important;
+  z-index: 3 !important;
+  top: calc(17.5vh + 30px) !important;
+} */

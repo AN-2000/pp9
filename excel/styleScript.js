@@ -57,3 +57,6 @@ backgroundColorBtn.addEventListener("click", function () {
 
   colorPicker.click();
 });
+
+
+
