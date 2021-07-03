@@ -12,8 +12,6 @@ let obj = {
 
 obj.f();
 
-
-
 // //normal function (keyword function; i can give it a name)
 // function f1() {
 //   console.log("Hi");
@@ -47,3 +45,9 @@ obj.f();
 // }
 
 // let f8 = (a) => 2;
+
+// IIFE
+
+// (() => {
+//   console.log("THIS IS AN IIFE USING ARROW FUNCTION ");
+// })();
