@@ -32,24 +32,28 @@
 
     <!-- Render function clear the div where we are going to render(display) our component and then creates a new instance of our component and displays in the given div  -->
     <script type="text/jsx">
-      
+      class Counter extends React.Component {
+        state = {
+          currVal: 0,
+        };
 
-      let App = function () {
-        return (
-          <div>
-            <h1>This is title</h1>
-            <h3>This is sub title</h3>
-            <p>aslkdklasdklsadnsadknsaklndlkasndnskdnsalkndasndkasndlakna</p>
-          </div>
-        );
-      };
+        render() {
+          return (
+            <div>
+              <p> {this.state.currVal} </p>
+              <button
+                onClick={() => {
+                  this.setState({currVal:this.state.currVal + 1});
+                }}
+              >
+                +
+              </button>
+            </div>
+          );
+        }
+      }
 
-
-      ReactDOM.render(<div>
-          <App/>
-          <App/>
-          <App/>
-      </div>, document.querySelector("#root"));
+      ReactDOM.render(<Counter />, document.querySelector("#root"));
     </script>
   </body>
 </html>
