@@ -40,20 +40,32 @@
         render() {
           return (
             <div>
-              <p> {this.state.currVal} </p>
               <button
                 onClick={() => {
-                  this.setState({currVal:this.state.currVal + 1});
+                  this.setState({ currVal: this.state.currVal + 1 });
                 }}
               >
                 +
               </button>
+              <p> {this.state.currVal} </p>
+
+              <button
+                onClick={() => {
+                  this.setState({ currVal: this.state.currVal - 1 });
+                }}
+              >
+                -
+              </button>
+          <hr/>
             </div>
           );
         }
       }
 
-      ReactDOM.render(<Counter />, document.querySelector("#root"));
+      ReactDOM.render(<div>
+          <Counter/>
+      </div>, document.querySelector("#root"));
+
     </script>
   </body>
 </html>
