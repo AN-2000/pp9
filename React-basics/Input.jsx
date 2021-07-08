@@ -6,8 +6,8 @@ class Input extends React.Component{
     render(){
         return(
             <div>
-                <input type="text" value={this.state.task}></input>
-                <button>Submit</button>
+                <input type="text" value={this.state.task} onChange={(e)=>{this.setState({task:e.currentTarget.value})}}></input>
+                <button onClick={()=>{console.log(this.state.task)}}>Submit</button>
             </div>
         );
     }

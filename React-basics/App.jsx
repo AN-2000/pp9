@@ -3,6 +3,7 @@ function App(){
     return(
         <div>
             <Input/>
+            <List/>
         </div>
     );
 }
