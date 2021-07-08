@@ -1,5 +1,3 @@
-console.log(React.Component);
-
 class Input extends React.Component {
   state = { task: "" };
 
@@ -16,6 +14,7 @@ class Input extends React.Component {
         <button
           onClick={() => {
             this.props.taskHandlerFunction(this.state.task);
+            this.setState({ task: "" });
           }}
         >
           Submit

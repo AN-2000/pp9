@@ -1,9 +1,14 @@
-function ListItem(props){
-    return(
-        <li>
-            <span>{props.taskVal}</span>
-            <button>X</button>
-        </li>
-    )
+function ListItem(props) {
+  return (
+    <li>
+      <span className="task">{props.taskVal}</span>
+      <button
+        onClick={() => {
+          props.removeTask(props.taskVal);
+        }}
+      >
+        X
+      </button>
+    </li>
+  );
 }
-
