@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">not rendered</div>
+
+    <!-- Actually react library => it has the code which helps us to make components use state and props -->
+    <!-- This library defines a variable called React  -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+
+    <!-- This library is called react dom. It helps us to render the components we created in our web page -->
+    <!-- This library defines a variable called ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+      integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Render function clear the div where we are going to render(display) our component and then creates a new instance of our component and displays in the given div  -->
+    <script type="text/jsx">
+      class Counter extends React.Component {
+        state = {
+          currVal: 0,
+        };
+
+        render() {
+          return (
+            <div>
+              <button
+                onClick={() => {
+                  this.setState({ currVal: this.state.currVal + 1 });
+                }}
+              >
+                +
+              </button>
+              <p> {this.state.currVal} </p>
+
+              <button
+                onClick={() => {
+                  this.setState({ currVal: this.state.currVal - 1 });
+                }}
+              >
+                -
+              </button>
+          <hr/>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<div>
+          <Counter/>
+      </div>, document.querySelector("#root"));
+
+    </script>
+  </body>
+</html>
