@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import Category from "./Category";
 import Search from "./Search";
+import Table from "./Table";
 
 function App(props) {
   return (
@@ -17,6 +18,12 @@ function App(props) {
           <div className="row">
             <div className="col-3">
               <Search />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-8">
+              <Table />
             </div>
           </div>
         </div>
