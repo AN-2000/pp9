@@ -6,6 +6,15 @@ class Category extends React.Component {
     allGenre: ["Action", "Comedy", "Romance", "Thriller", "Horror"],
   };
 
+  componentDidMount(){
+    //api call(msg bhejna=> get)
+    fetch("/genre").then(function(res){
+      return res.json()
+    }).then((json)=>{
+      this.setState({allGenre:json})
+    })
+  }
+
   render() {
     return (
       <ul class="list-group">
@@ -13,8 +22,8 @@ class Category extends React.Component {
 
         {this.state.allGenre.map((el) => {
           return (
-            <li class="list-group-item" key={el}>
-              {el}
+            <li class="list-group-item" key={el._id}>
+              {el.name}
             </li>
           );
         })}
