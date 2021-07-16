@@ -6,7 +6,7 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <p>Showing 9 movies from the database</p>
+        <p>Showing {this.props.noOfMovies} movies from the database</p>
         <button type="button" class="btn btn-primary mb-4">
           New
         </button>

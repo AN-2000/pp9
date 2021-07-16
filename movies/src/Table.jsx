@@ -13,6 +13,8 @@ class Table extends React.Component {
       })
       .then((json) => {
         this.setState({ allMovies: json });
+
+        this.props.sendData(json.length);
       });
   }
 
@@ -77,6 +79,8 @@ class Table extends React.Component {
                         allMovies = allMovies.filter((eli) => {
                           return eli._id != el._id;
                         });
+
+                        this.props.sendData(allMovies.length)
 
                         this.setState({ allMovies: allMovies });
                       }}
