@@ -52,9 +52,33 @@ class Table extends React.Component {
                   <td>{el.genre.name}</td>
                   <td>{el.numberInStock}</td>
                   <td>{el.dailyRentalRate}</td>
-                  <td>Like</td>
+                  <td
+                    onClick={() => {
+                      let allMovies = this.state.allMovies;
+
+                      let index = allMovies.findIndex((e) => e._id == el._id);
+
+                      allMovies[index].liked = true;
+
+                      this.setState({ allMovies: allMovies });
+                    }}
+                  >
+                    {el.liked ? "Liked!" : "Like"}
+                  </td>
                   <td>
-                    <button type="button" class="btn btn-danger">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      onClick={() => {
+                        let allMovies = this.state.allMovies;
+
+                        allMovies = allMovies.filter((eli) => {
+                          return eli._id != el._id;
+                        });
+
+                        this.setState({ allMovies: allMovies });
+                      }}
+                    >
                       Delete
                     </button>
                   </td>
@@ -66,13 +90,21 @@ class Table extends React.Component {
 
         <nav>
           <ul class="pagination">
-            <li class="page-item">
+            <li
+              class="page-item"
+              onClick={() => {
+                let currPage = this.state.currPage;
+                currPage--;
+                if (currPage < 1) currPage = 1;
+                this.setState({ currPage: currPage });
+              }}
+            >
               <a class="page-link" href="#">
                 Previous
               </a>
             </li>
 
-            {arr.map( (el) => {
+            {arr.map((el) => {
               return (
                 <li
                   class="page-item"
@@ -87,7 +119,15 @@ class Table extends React.Component {
               );
             })}
 
-            <li class="page-item">
+            <li
+              class="page-item"
+              onClick={() => {
+                let currPage = this.state.currPage;
+                currPage++;
+                if (currPage > numberOfPages) currPage = numberOfPages;
+                this.setState({ currPage: currPage });
+              }}
+            >
               <a class="page-link" href="#">
                 Next
               </a>
