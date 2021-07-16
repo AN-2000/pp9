@@ -58,7 +58,9 @@ class Table extends React.Component {
 
                       let index = allMovies.findIndex((e) => e._id == el._id);
 
-                      allMovies[index].liked = true;
+                      allMovies[index].liked
+                        ? (allMovies[index].liked = false)
+                        : (allMovies[index].liked = true);
 
                       this.setState({ allMovies: allMovies });
                     }}
