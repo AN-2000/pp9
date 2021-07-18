@@ -8,6 +8,7 @@ class App extends React.Component {
   state = {
     noOfMovies: 0,
     searchString: "",
+    currGenre: "All Genre",
   };
 
   receiveMovieData = (number) => {
@@ -18,6 +19,10 @@ class App extends React.Component {
     this.setState({ searchString: param });
   };
 
+  receiveCurrGenre = (genre) => {
+    this.setState({ currGenre: genre });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -25,7 +30,7 @@ class App extends React.Component {
 
         <div className="row">
           <div className="col-2 p-4">
-            <Category />
+            <Category receiveCurrGenre={this.receiveCurrGenre} />
           </div>
 
           <div className="col-10 p-4">
@@ -43,6 +48,7 @@ class App extends React.Component {
                 <Table
                   sendData={this.receiveMovieData}
                   searchString={this.state.searchString}
+                  currGenre={this.state.currGenre}
                 />
               </div>
             </div>
