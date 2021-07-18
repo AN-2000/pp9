@@ -19,7 +19,23 @@ class Table extends React.Component {
   }
 
   render() {
-    let numberOfPages = Math.ceil(this.state.allMovies.length / 5);
+    let moviesToDisplay = [];
+
+    if (this.props.searchString) {
+      let strToCompare = this.props.searchString.toLowerCase();
+
+      let moviesInState = this.state.allMovies;
+
+      for (let i = 0; i < moviesInState.length; i++) {
+        if (moviesInState[i].title.toLowerCase().includes(strToCompare)) {
+          moviesToDisplay.push(moviesInState[i]);
+        }
+      }
+    } else {
+      moviesToDisplay = this.state.allMovies;
+    }
+
+    let numberOfPages = Math.ceil(moviesToDisplay.length / 5);
     let arr = [];
     for (let i = 1; i <= numberOfPages; i++) {
       arr.push(i);
@@ -28,9 +44,9 @@ class Table extends React.Component {
     let starting = (this.state.currPage - 1) * 5;
     let ending = this.state.currPage * 5 - 1;
 
-    let moviesToDisplay = this.state.allMovies.slice(
+    moviesToDisplay = moviesToDisplay.slice(
       starting,
-      Math.min(ending, this.state.allMovies.length - 1) + 1
+      Math.min(ending, moviesToDisplay.length - 1) + 1
     );
 
     return (
@@ -80,7 +96,7 @@ class Table extends React.Component {
                           return eli._id != el._id;
                         });
 
-                        this.props.sendData(allMovies.length)
+                        this.props.sendData(allMovies.length);
 
                         this.setState({ allMovies: allMovies });
                       }}

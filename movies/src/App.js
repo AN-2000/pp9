@@ -7,10 +7,15 @@ import Table from "./Table";
 class App extends React.Component {
   state = {
     noOfMovies: 0,
+    searchString: "",
   };
 
   receiveMovieData = (number) => {
     this.setState({ noOfMovies: number });
+  };
+
+  receiveSearchParam = (param) => {
+    this.setState({ searchString: param });
   };
 
   render() {
@@ -26,13 +31,19 @@ class App extends React.Component {
           <div className="col-10 p-4">
             <div className="row">
               <div className="col-3">
-                <Search noOfMovies={this.state.noOfMovies} />
+                <Search
+                  noOfMovies={this.state.noOfMovies}
+                  receiveSearchParam={this.receiveSearchParam}
+                />
               </div>
             </div>
 
             <div className="row">
               <div className="col-8">
-                <Table sendData={this.receiveMovieData} />
+                <Table
+                  sendData={this.receiveMovieData}
+                  searchString={this.state.searchString}
+                />
               </div>
             </div>
           </div>
