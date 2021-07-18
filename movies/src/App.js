@@ -4,6 +4,7 @@ import Category from "./Category";
 import Search from "./Search";
 import Table from "./Table";
 
+
 class App extends React.Component {
   state = {
     noOfMovies: 0,
@@ -26,8 +27,6 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar />
-
         <div className="row">
           <div className="col-2 p-4">
             <Category receiveCurrGenre={this.receiveCurrGenre} />
@@ -54,6 +53,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+      
       </React.Fragment>
     );
   }
