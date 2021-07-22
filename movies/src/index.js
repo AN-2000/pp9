@@ -6,8 +6,9 @@ import ReactDOM from "react-dom";
 // import Login from "./Login";
 // import Rentals from "./Rentals";
 import MainPage from "./MainPage";
+import User from "./User";
 
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // ReactDOM.render(
 //   <Router>
@@ -34,4 +35,17 @@ import MainPage from "./MainPage";
 //   document.getElementById("root")
 // );
 
-ReactDOM.render(<MainPage />, document.querySelector("#root"));
+ReactDOM.render(
+  <Router>
+    <Switch>
+      <Route path="/user/:id">
+        <User />
+      </Route>
+      <Route path="/">
+        <MainPage />
+      </Route>
+    </Switch>
+  </Router>,
+
+  document.querySelector("#root")
+);

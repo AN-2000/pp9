@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 class MainPage extends React.Component {
   // localhost:3000/user.json
 
@@ -18,7 +20,17 @@ class MainPage extends React.Component {
   }
 
   render() {
-    return <h1>Main Page</h1>;
+    return (
+      <div>
+        <ul>
+          {this.state.usersData.map((el) => (
+            <li key={el.id}>
+              <Link to={`/user/${el.id}`} >{el.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 }
 
