@@ -8,15 +8,13 @@ let someContext = createContext();
 function A() {
   let [name, setName] = useState("Jack");
 
-
-  return(
-      <someContext.Provider value={{name:"Jack",email:"j@g.com"}}>
-          <B/>
-      </someContext.Provider>
-  )
-
+  return (
+    <someContext.Provider value={name}>
+      <B />
+    </someContext.Provider>
+  );
 }
 
 export default A;
 
-export {someContext};
+export { someContext };

@@ -1,13 +1,14 @@
-import {someContext} from "./A";
+import { someContext } from "./A";
+import {useContext} from "react"
 
-function D(){
-    return (
-       <someContext.Consumer>
-           {(obj)=>{
-               return (<h1>{obj.name+" "+obj.email}</h1>)
-           }}
-       </someContext.Consumer>
-    );
+function D() {
+
+    let name = useContext(someContext)
+
+
+  return (
+      <h1>{`${name} `}</h1>
+  );
 }
 
 export default D;
