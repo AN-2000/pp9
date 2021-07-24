@@ -1,42 +1,27 @@
-import { useState,useEffect } from "react";
-
-import "./style.css";
+import { useEffect, useState } from "react";
+import Display from "./Display";
+import Form from "./Form";
 
 function App() {
+  let [name, setName] = useState("");
+  let [email, setEmail] = useState("");
+  let [phone, setPhone] = useState("");
+  let [theme, setTheme] = useState("light");
 
-  let [count, setCount] = useState(0); // ye line skip hojati hai
-  
-
-  //case 1: works like componentDidMount
-    useEffect(()=>{
-      console.log("use effect case 1 was executed");
-    },[])
-
-    useEffect(()=>{
-      console.log("use effect case 2 was executed");
-      // setCount(count+1) infinite loop problem 
-    })
-
-
-  console.log("component was rendered");
+  useEffect(() => {
+    alert("theme has been changed")
+  }, [theme]);
 
   return (
-    <div>
-      <button className="test"
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        +
-      </button>
-      <p>{count}</p>
-      <button
-        onClick={() => {
-          setCount(count - 1);
-        }}
-      >
-        -
-      </button>
+    <div className="my-container">
+      <Display name={name} email={email} phone={phone} theme={theme} />
+      <Form
+        theme={theme}
+        handleName={setName}
+        handleEmail={setEmail}
+        handlePhone={setPhone}
+        handleTheme={setTheme}
+      />
     </div>
   );
 }
