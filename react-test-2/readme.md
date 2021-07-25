@@ -10,7 +10,7 @@ https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloan
 ### (Part A)
 
 Write a front end single page app that:
-- On page load, read https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0 which returns a list of json.
+- On page load, read `https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0` which returns a list of json.
 - Parse the content
 - And display the json content in a HTML table or list.
 
