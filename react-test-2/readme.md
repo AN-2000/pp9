@@ -20,14 +20,14 @@ Write a front end single page app that:
 - When the user clicks on the item, display a modal that shows the object details. You may use any UI widget framework you are familiar with, e.g. Bootstrap. 
 
 
-## Task 2 
+## Task - 2 
 
 - Use BoredApi: this api gives a new task every time you make a get request.
 - Create a react app which has 2 main pieces: new activity button & a list with all the activities.
 - Whenever the new activity button is clicked flash a message for 2 seconds that new activity is added and add that activity to the list.
 
 
-## Task 3
+## Task - 3
 
 - Use `https://restcountries.eu/rest/v2/capital/${capitalName}`; it gives you the country based on capital. 
 - Create a react app which has 2 main pieces: a search Box & a list with all the countries.
