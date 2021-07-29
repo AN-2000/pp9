@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import { firestore } from "./firebase";
+import "./App.css";
 
 function App() {
   let [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    
     let f = async () => {
-      let querySnapshot = await firestore.collection("posts").get();
+      await firestore.collection("posts").onSnapshot((querySnapshot) => {
+        let tempArr = [];
 
-      let tempArr = [];
-
-      querySnapshot.forEach((doc) => {
-        tempArr.push({
-          id: doc.id,
-          data: doc.data(),
+        querySnapshot.forEach((doc) => {
+          tempArr.push({
+            id: doc.id,
+            data: doc.data(),
+          });
         });
-      });
 
-      setPosts(tempArr);
+        setPosts(tempArr);
+      });
     };
 
     f();
@@ -30,6 +32,19 @@ function App() {
           <li key={el.id}>{el.data.Body}</li>
         ))}
       </ul>
+
+      <input
+        placeholder="What's on your mind?"
+        type="text"
+        onKeyDown={(e) => {
+          if (e.code === "Enter") {
+            //  jobhi likha hua hai wo muje firebase me dalna hai
+            let post = e.currentTarget.value;
+            firestore.collection("posts").add({ Body: post });
+            e.currentTarget.value = "";
+          }
+        }}
+      />
     </div>
   );
 }
