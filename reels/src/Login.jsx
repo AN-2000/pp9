@@ -1,7 +1,11 @@
 import { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { auth, signInWithGoogle } from "./firebase";
 
 let Login = (props) => {
+
+    
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       //if login-> user info
@@ -17,14 +21,20 @@ let Login = (props) => {
     });
   }, []);
 
+
+
   return (
-    <button
-      onClick={signInWithGoogle}
-      type="submit"
-      className="btn btn-primary m-4"
-    >
-      Login With Google
-    </button>
+    <div>
+      {props.user ? <Redirect to="/home" /> : ""}
+
+      <button
+        onClick={signInWithGoogle}
+        type="submit"
+        className="btn btn-primary m-4"
+      >
+        Login With Google
+      </button>
+    </div>
   );
 };
 
