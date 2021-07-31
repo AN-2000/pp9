@@ -2,6 +2,9 @@ import firebase from "firebase/app";
 
 import "firebase/firestore";
 
+//Step 1
+import "firebase/auth"
+
 let firebaseConfig = {
   apiKey: "AIzaSyDatqXnL5Xnni4kooClgQKcSS7QefIpR4I",
   authDomain: "reels-95c75.firebaseapp.com",
@@ -14,5 +17,16 @@ let firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
+
+//Step 2
+export const auth = firebase.auth()
+
+//Step 3=> firebase console; enable google login in auth panel
+
+//Step 4
+let provider = new firebase.auth.GoogleAuthProvider()
+
+export const signInWithGoogle = ()=> auth.signInWithPopup(provider)
+
 
 export default firebase;
