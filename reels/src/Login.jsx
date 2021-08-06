@@ -15,7 +15,7 @@ let Login = (props) => {
       if (user) {
         let { displayName, email, uid } = user;
 
-        let docRef = firestore.collection("users").doc(uid);
+        let docRef = firestore.collection("posts").doc(uid);
         let document = await docRef.get();
         if (!document.exists) {
           docRef.set({

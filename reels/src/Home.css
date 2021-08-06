@@ -1,0 +1,42 @@
+.logout-btn {
+  position: fixed;
+  bottom: 8rem;
+  right: 2rem;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: none;
+}
+
+.posts-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.video-card {
+  color: white;
+  border: 1px solid;
+  height: 100%;
+  width: 30rem;
+  margin: auto;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.like {
+  font-size: 40px;
+  color: #d63031;
+  position: absolute;
+  bottom: 20vh;
+  right: 10px;
+}
+
+.comment {
+  font-size: 40px;
+  position: absolute;
+  bottom: 14vh;
+  right: 10px;
+}
