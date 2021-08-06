@@ -1,31 +1,40 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { auth, signInWithGoogle } from "./firebase";
+import { auth, signInWithGoogle, firestore } from "./firebase";
+
+import { userContext } from "./App";
 
 let Login = (props) => {
+  let value = useContext(userContext);
 
-    
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(async (user) => {
       //if login-> user info
       //if logout-> user = null
       if (user) {
-        let { displayName, email } = user;
-        console.log(user);
+        let { displayName, email, uid } = user;
 
-        props.handleUser({ displayName, email });
+        let docRef = firestore.collection("users").doc(uid);
+        let document = await docRef.get();
+        if (!document.exists) {
+          docRef.set({
+            displayName,
+            email,
+            posts: [],
+          });
+        }
+
+        props.handleUser({ displayName, email, uid });
       } else {
         props.handleUser(user);
       }
     });
   }, []);
 
-
-
   return (
     <div>
-      {props.user ? <Redirect to="/home" /> : ""}
+      {value? <Redirect to="/home" /> : ""}
 
       <button
         onClick={signInWithGoogle}
