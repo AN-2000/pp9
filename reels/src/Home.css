@@ -18,7 +18,6 @@
 
 .video-card {
   color: white;
-  border: 1px solid;
   height: 100%;
   width: 30rem;
   margin: auto;
@@ -39,4 +38,66 @@
   position: absolute;
   bottom: 14vh;
   right: 10px;
+}
+
+.username {
+  position: absolute;
+  bottom: 20vh;
+  left: 20px;
+}
+
+.song {
+  position: absolute;
+  left: 20px;
+  bottom: 16vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.comment-box {
+  border: 1px solid;
+  height: 45%;
+  width: 100%;
+  background: white;
+  position: absolute;
+  bottom: 0;
+}
+
+.comment-box-close-btn {
+  position: absolute;
+  top: 0;
+  border: none;
+  right: 0;
+  color: #0984e3;
+  height: 10%;
+}
+
+.all-comments {
+  margin-top: 4.5vh;
+  height: 80%;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.comment-form {
+  height: 10%;
+}
+
+.comment-form input {
+  height: 100%;
+  width: 80%;
+  border: none;
+}
+
+.comment-form button {
+  height: 100%;
+  width: 20%;
+  border: none;
+  color: #0984e3;
 }
