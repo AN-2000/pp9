@@ -32,7 +32,7 @@ let VideoCard = () => {
         <b>@username</b>
       </p>
       <p className="song">
-        <span class="material-icons-outlined">music_note</span>
+        <span className="material-icons-outlined">music_note</span>
         <marquee>song name</marquee>
       </p>
 
