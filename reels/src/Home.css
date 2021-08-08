@@ -8,6 +8,16 @@
   border: none;
 }
 
+#profile {
+  position: fixed;
+  bottom: 15rem;
+  right: 2rem;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: none;
+}
+
 .upload-btn {
   position: fixed;
   bottom: 3rem;

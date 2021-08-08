@@ -1,4 +1,4 @@
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { auth, storage, firestore } from "./firebase";
 import { AuthContext } from "./AuthProvider";
 import { useContext, useEffect, useState } from "react";
@@ -47,6 +47,10 @@ let Home = () => {
           >
             Logout
           </button>
+
+          <Link to="/profile">
+            <button id="profile">Profile</button>
+          </Link>
 
           <input
             //whenever click on input file tag set its value to null so that even if we select same file the tag will feel we have done some changes and it will call onChange
