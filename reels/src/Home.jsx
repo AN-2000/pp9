@@ -11,18 +11,16 @@ let Home = () => {
 
   let [posts, setPosts] = useState([]);
 
-
   useEffect(() => {
-    let unsubscription = firestore.collection("posts").onSnapshot((querySnapshot) => {
-      
-      
-      setPosts(
-        querySnapshot.docs.map((doc) => {
-          console.log(doc.data());
-          return doc.data();
-        })
-      );
-    });
+    let unsubscription = firestore
+      .collection("posts")
+      .onSnapshot((querySnapshot) => {
+        setPosts(
+          querySnapshot.docs.map((doc) => {
+            return { ...doc.data(), id: doc.id };
+          })
+        );
+      });
 
     // console.log(posts);
 
@@ -51,12 +49,10 @@ let Home = () => {
           </button>
 
           <input
-
             //whenever click on input file tag set its value to null so that even if we select same file the tag will feel we have done some changes and it will call onChange
             onClick={(e) => {
               e.target.value = null;
             }}
-
             onChange={(e) => {
               if (!e.target.files[0]) return;
 
@@ -111,7 +107,7 @@ let Home = () => {
                 //using the firebase storage object we are getting reference of a file location
                 //in our case posts/userId/fileName and uploading our file to that location
                 let uploadtask = storage
-                //added current date to filename so that same file copies can be store to firebase with out overriding 
+                  //added current date to filename so that same file copies can be store to firebase with out overriding
                   .ref(`/posts/${value.uid}/${Date.now() + name}`)
                   .put(file);
 

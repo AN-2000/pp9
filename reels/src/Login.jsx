@@ -1,10 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Redirect } from "react-router-dom";
-import { auth, signInWithGoogle, firestore } from "./firebase";
+import {  signInWithGoogle } from "./firebase";
 
 import { AuthContext } from "./AuthProvider";
 
-let Login = (props) => {
+let Login = () => {
   let value = useContext(AuthContext);
 
   return (
