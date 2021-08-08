@@ -15,7 +15,7 @@ let Login = (props) => {
       if (user) {
         let { displayName, email, uid } = user;
 
-        let docRef = firestore.collection("posts").doc(uid);
+        let docRef = firestore.collection("users").doc(uid);
         let document = await docRef.get();
         if (!document.exists) {
           docRef.set({
@@ -34,7 +34,7 @@ let Login = (props) => {
 
   return (
     <div>
-      {value? <Redirect to="/home" /> : ""}
+      {value ? <Redirect to="/home" /> : ""}
 
       <button
         onClick={signInWithGoogle}

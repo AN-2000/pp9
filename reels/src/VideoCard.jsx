@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-let VideoCard = () => {
+let VideoCard = (props) => {
   let [boxOpen, setBoxOpen] = useState(false);
   let [playing, setPlaying] = useState(false);
 
@@ -16,7 +16,7 @@ let VideoCard = () => {
             e.currentTarget.play();
           }
         }}
-        src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"
+        src={props.post.url}
       ></video>
       <span className="material-icons-outlined like">favorite_border</span>
       <span
