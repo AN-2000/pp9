@@ -2,35 +2,10 @@ import { useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { auth, signInWithGoogle, firestore } from "./firebase";
 
-import { userContext } from "./App";
+import { AuthContext } from "./AuthProvider";
 
 let Login = (props) => {
-  let value = useContext(userContext);
-
-
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      //if login-> user info
-      //if logout-> user = null
-      if (user) {
-        let { displayName, email, uid } = user;
-
-        let docRef = firestore.collection("users").doc(uid);
-        let document = await docRef.get();
-        if (!document.exists) {
-          docRef.set({
-            displayName,
-            email,
-            posts: [],
-          });
-        }
-
-        props.handleUser({ displayName, email, uid });
-      } else {
-        props.handleUser(user);
-      }
-    });
-  }, []);
+  let value = useContext(AuthContext);
 
   return (
     <div>

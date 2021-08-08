@@ -1,13 +1,13 @@
 import { Redirect } from "react-router-dom";
 import { auth, storage, firestore } from "./firebase";
-import { userContext } from "./App";
+import { AuthContext } from "./AuthProvider";
 import { useContext, useEffect, useState } from "react";
 
 import VideoCard from "./VideoCard";
 import "./Home.css";
 
 let Home = () => {
-  let value = useContext(userContext);
+  let value = useContext(AuthContext);
 
   let [posts, setPosts] = useState([]);
 
