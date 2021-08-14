@@ -1,8 +1,5 @@
-let incrementActionCreator = () => {
+export const incrementActionCreator = () => {
   return {
     type: "INCREMENT",
   };
 };
-
-
-export const incrementActionCreator;

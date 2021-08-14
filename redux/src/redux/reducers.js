@@ -1,7 +1,7 @@
-let incrementReducer = (state = 0, action) => {
+export const incrementReducer = (state = 10, action) => {
   if (action.type === "INCREMENT") {
     state = state + 1;
   }
-};
 
-export default incrementReducer;
+  return state;
+};
