@@ -1,8 +1,9 @@
-import { incrementReducer } from "./reducers";
-import { incrementActionCreator } from "./actions";
-import { createStore } from "redux";
+import { counterReducer, authReducer } from "./reducers";
+import { combineReducers } from "redux";
 
-let store = createStore(incrementReducer);
+let rootReducer = combineReducers({
+  count:counterReducer,
+  auth:authReducer,
+});
 
-
-export default store;
+export default rootReducer;
