@@ -24,18 +24,20 @@ let initialState = [
 
 export const reducer = (state = initialState, action) => {
   let index = -1;
+  let copy;
   switch (action.type) {
     case "ADD_TO_CART":
-      index = state.findIndex((el) => el.id === action.payload);
-      state[index].incart = state[index].incart + 1;
-      console.log(state);
-      return state;
+      copy = state.map((el) => el);
+      index = copy.findIndex((el) => el.id === action.payload);
+      copy[index].incart = copy[index].incart + 1;
+      return copy;
 
     case "REMOVE_FROM_CART":
-      index = state.findIndex((el) => el.id === action.payload);
-      if (state[index].incart > 0)
-        state[index].incart = state[index].incart - 1;
-      return state;
+      copy = state.map((el) => el);
+
+      index = copy.findIndex((el) => el.id === action.payload);
+      if (copy[index].incart > 0) copy[index].incart = copy[index].incart - 1;
+      return copy;
 
     default:
       return state;

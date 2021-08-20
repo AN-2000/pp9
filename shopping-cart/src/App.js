@@ -4,8 +4,11 @@ import Home from "./components/home";
 import Cart from "./components/cart";
 import Navbar from "./components/navbar";
 import Preview from "./components/preview";
+import { useSelector } from "react-redux";
 
 let App = () => {
+  let state = useSelector((state) => state);
+  console.log(state);
   return (
     <>
       <Router>
