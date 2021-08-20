@@ -1,0 +1,19 @@
+.product-preview-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 50px;
+}
+
+.cart-button {
+  position: fixed;
+  height: 4rem;
+  width: 4rem;
+  border: none;
+  border-radius: 50%;
+  bottom: 6rem;
+  right: 40px;
+  font-size: 2.2rem;
+  background: #ff7979;
+  color: white;
+  font-weight: 800;
+}

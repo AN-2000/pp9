@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/home";
 import Cart from "./components/cart";
 import Navbar from "./components/navbar";
-import Product from "./components/product";
+import Preview from "./components/preview";
 
 let App = () => {
   return (
@@ -14,8 +14,8 @@ let App = () => {
           <Route path="/cart">
             <Cart />
           </Route>
-          <Route path="/product">
-            <Product />
+          <Route path="/preview/:id">
+            <Preview />
           </Route>
           <Route path="/">
             <Home />
