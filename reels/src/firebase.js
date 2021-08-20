@@ -7,12 +7,12 @@ import "firebase/auth";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDutCMw3Jfb5iXv5bReh3dpaoz2e_zSxDA",
-  authDomain: "test-e3a5c.firebaseapp.com",
-  projectId: "test-e3a5c",
-  storageBucket: "test-e3a5c.appspot.com",
-  messagingSenderId: "357000282339",
-  appId: "1:357000282339:web:7cbd2ca7ddc6e175eb85d6",
+  apiKey: "AIzaSyBXOqqRZU6cztD9CplKRnzzq7Krt27JO4U",
+  authDomain: "reels-f182f.firebaseapp.com",
+  projectId: "reels-f182f",
+  storageBucket: "reels-f182f.appspot.com",
+  messagingSenderId: "139583315351",
+  appId: "1:139583315351:web:74ed2334f49421b96eb8d2",
 };
 firebase.initializeApp(firebaseConfig);
 
