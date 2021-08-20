@@ -1,14 +1,16 @@
 import Product from "./product";
 import "./home.css";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 let Home = () => {
   let history = useHistory();
+  let state = useSelector((state) => state);
   return (
     <>
       <div className="product-preview-container">
-        <Product />
-        <Product />
-        <Product />
+        {state.map((el) => {
+          return <Product data={el} />;
+        })}
       </div>
       <button
         onClick={() => {

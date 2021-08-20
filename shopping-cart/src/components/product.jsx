@@ -3,22 +3,21 @@ import { Link } from "react-router-dom";
 import { addToCart } from "../redux/actions";
 import "./product.css";
 
-let Product = () => {
+let Product = (props) => {
   let dispatch = useDispatch();
 
   return (
     <div className="product">
-      <Link to="/preview/1">
+      <Link to={`/preview/${props.data.id}`}>
         <div className="product_img">
-          <img src="phone.jpeg" />
+          <img src={props.data.img} />
         </div>
       </Link>
 
       <div className="product_button">
         <button
           onClick={() => {
-            console.log("dispatching an action");
-            dispatch(addToCart(1));
+            dispatch(addToCart(props.data.id));
           }}
         >
           Buy
