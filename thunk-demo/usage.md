@@ -1,0 +1,1 @@
+Agr apko apne kisi UI event ki wajah se ek action dispatch krna hai and use action se koi async kaam hota hai jiski wajah se apka jo redux ka store hai usme state change hoti hai only then it is required, i.e, redux thunk. Also ye kaam aap bina thunk ke bhi aram se kr sakte hobut agr ye kaam apko baar baar krna hai to better tarika thunk hai.

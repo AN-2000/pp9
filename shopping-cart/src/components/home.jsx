@@ -2,9 +2,16 @@ import Product from "./product";
 import "./home.css";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 let Home = () => {
+
+
+
   let history = useHistory();
   let state = useSelector((state) => state);
+
+
+
   return (
     <>
       <div className="product-preview-container">
