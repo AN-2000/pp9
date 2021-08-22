@@ -26,6 +26,7 @@ export const failureAction = (err) => {
 export const fetchUsers = () => {
   return (dispatch) => {
     dispatch(fetchAction());
+    
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => {
         return res.json();
