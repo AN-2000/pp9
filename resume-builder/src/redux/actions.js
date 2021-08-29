@@ -35,9 +35,10 @@ export const saveStart = () => {
   };
 };
 
-export const saveCompleted = () => {
+export const saveCompleted = (id) => {
   return {
     type: SAVE_COMPLETE,
+    payload: id,
   };
 };
 
@@ -58,8 +59,11 @@ export const saveResume = (uid, details, code) => {
         details,
         code,
       })
-      .then(() => {
-        dispatch(saveCompleted());
+      .then((docRef) => {
+        return docRef.get();
+      })
+      .then((doc) => {
+        dispatch(saveCompleted(doc.id));
       })
       .catch((err) => {
         dispatch(saveErr(err));

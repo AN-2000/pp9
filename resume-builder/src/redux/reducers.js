@@ -51,6 +51,7 @@ export const detailsReducer = (state = initialState, action) => {
 let saveState = {
   loading: null,
   err: null,
+  id: "",
 };
 
 export const saveReducer = (state = saveState, action) => {
@@ -64,6 +65,7 @@ export const saveReducer = (state = saveState, action) => {
       return {
         ...state,
         loading: false,
+        id: action.payload,
       };
     case SAVE_ERR:
       return {

@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "./redux/actions";
 import Personal from "./components/personal";
 import Qualifications from "./components/qualifications";
+import PublicPreview from "./components/publicPreview";
 let App = () => {
   let dispatch = useDispatch();
 
@@ -37,6 +38,9 @@ let App = () => {
       <Router>
         <Navbar />
         <Switch>
+          <Route path="/publicpreview/:rid">
+            <PublicPreview />
+          </Route>
           <Route path="/qualifications">
             <Qualifications />
           </Route>

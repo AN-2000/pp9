@@ -1,12 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setDetails } from "../redux/actions";
+import { saveResume } from "../redux/actions";
 import Preview from "./preview";
 import "./css/personal.css";
 let Qualifications = () => {
   let { degree, cgpa, year, college, isPublic } = useSelector(
     (state) => state.details
   );
+  let { uid } = useSelector((state) => state.user);
+  let details = useSelector((state) => state.details);
+  let code = useSelector((state) => state.template);
+  let saveState = useSelector((state) => state.saveState);
   let dispatch = useDispatch();
   let history = useHistory();
   return (
@@ -93,7 +98,22 @@ let Qualifications = () => {
         </div>
         <Preview />
       </div>
-      <button className="btn btn-primary save-qual">Save to Database</button>
+      <button
+        onClick={() => {
+          dispatch(saveResume(uid, details, code));
+        }}
+        className="btn btn-primary save-qual"
+      >
+        Save to Database
+      </button>
+      <button
+        onClick={() => {
+          alert("localhost:3000/publicpreview/" + saveState.id);
+        }}
+        className="btn btn-primary gen-qual"
+      >
+        Generate Link
+      </button>
     </>
   );
 };
