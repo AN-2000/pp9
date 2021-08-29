@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { userReducer, templateReducer, detailsReducer } from "./redux/reducers";
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 let rootReducer = combineReducers({
   template: templateReducer,
@@ -11,7 +12,7 @@ let rootReducer = combineReducers({
   details: detailsReducer,
 });
 
-let store = createStore(rootReducer);
+let store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>

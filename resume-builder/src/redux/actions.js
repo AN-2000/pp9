@@ -1,4 +1,12 @@
-import { SET_USER, SET_TEMPLATE, SET_DETAILS } from "./constants";
+import { firestore } from "../firebase";
+import {
+  SET_USER,
+  SET_TEMPLATE,
+  SET_DETAILS,
+  SAVE_START,
+  SAVE_COMPLETE,
+  SAVE_ERR,
+} from "./constants";
 
 export const setUser = (user) => {
   return {
@@ -18,5 +26,43 @@ export const setDetails = (detail) => {
   return {
     type: SET_DETAILS,
     payload: detail,
+  };
+};
+
+export const saveStart = () => {
+  return {
+    type: SAVE_START,
+  };
+};
+
+export const saveCompleted = () => {
+  return {
+    type: SAVE_COMPLETE,
+  };
+};
+
+export const saveErr = (err) => {
+  return {
+    type: SAVE_ERR,
+    payload: err,
+  };
+};
+
+export const saveResume = (uid, details, code) => {
+  return (dispatch) => {
+    dispatch(saveStart());
+    firestore
+      .collection("resume")
+      .add({
+        uid,
+        details,
+        code,
+      })
+      .then(() => {
+        dispatch(saveCompleted());
+      })
+      .catch((err) => {
+        dispatch(saveErr(err));
+      });
   };
 };
