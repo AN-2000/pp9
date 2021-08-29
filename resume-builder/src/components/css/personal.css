@@ -1,0 +1,13 @@
+.personal {
+  height: 93vh;
+  display: flex;
+}
+
+.form-container {
+  width: 50%;
+  height: 100%;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
