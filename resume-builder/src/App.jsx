@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { auth, firestore } from "./firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "./redux/actions";
+import Personal from "./components/personal";
 let App = () => {
   let dispatch = useDispatch();
 
@@ -35,6 +36,9 @@ let App = () => {
       <Router>
         <Navbar />
         <Switch>
+          <Route path="/personal">
+            <Personal />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>

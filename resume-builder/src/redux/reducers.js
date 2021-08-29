@@ -1,6 +1,6 @@
-import { SET_USER } from "./constants";
+import { SET_USER, SET_TEMPLATE } from "./constants";
 
-let userReducer = (state = null, action) => {
+export const userReducer = (state = null, action) => {
   switch (action.type) {
     case SET_USER:
       return action.payload;
@@ -9,4 +9,11 @@ let userReducer = (state = null, action) => {
   }
 };
 
-export default userReducer;
+export const templateReducer = (state = null, action) => {
+  switch (action.type) {
+    case SET_TEMPLATE:
+      return action.payload;
+    default:
+      return state;
+  }
+};

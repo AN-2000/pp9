@@ -6,7 +6,7 @@ import { auth } from "../firebase";
 let Login = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
-  let user = useSelector((state) => state);
+  let user = useSelector((state) => state.user);
   let history = useHistory();
   return (
     <>

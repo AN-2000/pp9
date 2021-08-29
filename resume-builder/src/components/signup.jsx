@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { auth } from "../firebase";
 
 let SignUp = () => {
-  let user = useSelector((state) => state);
+  let user = useSelector((state) => state.user);
 
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
